@@ -58,4 +58,19 @@
     margin: 10px;
 }
 
+.shimmer-card{
+    background-color: azure;
+    height: 412px;
+    width: 206px;
+    border: 1px solid gray;
+    padding: 0px;
+    margin: 6px;
+    border-radius: 5px;
+}
 
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 25px;
+    
+}
