@@ -23,9 +23,9 @@ const Body = () =>{
     };
 
     // Conditional rendering using if conndition. Same can be performed by ternary operator
-    // if(ListOfRestaurants.length === 0){
-    //     return<shimmer/>
-    // }
+    if(ListOfRestaurants.length === 0){
+        return<Shimmer/>
+    }
 
     return (
         <div className="body">
