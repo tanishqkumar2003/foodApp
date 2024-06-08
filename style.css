@@ -7,6 +7,7 @@
     display: flex;  
     justify-content: space-between;
     border: 1px solid black; 
+    border-radius: 5px;
 }
 
 .nav-items ul{
@@ -30,12 +31,12 @@
     height: 400px;
     line-height: 20px;
     border: 1px solid black;
+    border-radius: 5px;
     padding: 5px;
     margin: 5px;
     display: flex;
    flex-direction: column;
     object-fit: contain;
-   
 }
 
 .res-card img{
@@ -51,4 +52,10 @@
 .search{
     padding: 15px;
 }
+
+.filter-btn{
+    padding: 10px;
+    margin: 10px;
+}
+
 
