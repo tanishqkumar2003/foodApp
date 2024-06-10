@@ -74,3 +74,13 @@
     padding-top: 25px;
     
 }
+
+.login{
+    padding-top: 0px;
+    height:30px;
+    width: 80px;
+    margin-top: 25px;
+    background-color:   gainsboro;
+    border-radius: 7px;
+    font-weight: 700;
+}

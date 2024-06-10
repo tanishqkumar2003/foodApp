@@ -2,10 +2,10 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "This is namaste react",
-    "scripts": {
-      "start":"parcel index.html",
-      "build":"parcel build index.html",
-      "test": "jest"
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
   },
   "author": "Tanishq Kumar",
   "license": "ISC",
@@ -14,7 +14,9 @@
     "process": "^0.11.10"
   },
   "dependencies": {
+    "init": "^0.1.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1"
   }
 }
