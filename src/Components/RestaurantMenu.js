@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom";
 
 const RestaurantMenu = ()=>{
    const[resInfo, setResInfo] = useState({});
    const [resMenu, setResMenu] = useState([]);
+   const {resId} = useParams();
+
    const {cuisines=[],avgRating,costForTwoMessage,name} = resInfo;
    //The error "Cannot read properties of undefined (reading 'join')" occurs because cuisines is undefined when the component first renders. This happens because resInfo is initially an empty object, and cuisines is being destructured from it.
    //To fix this issue, you can provide a default value for cuisines when destructuring it from resInfo.
@@ -12,7 +15,7 @@ const RestaurantMenu = ()=>{
    }, []);
 
    const fetchMenu = async ()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=581809&catalog_qa=undefined&submitAction=ENTER");
+        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId="+resId+"&catalog_qa=undefined&submitAction=ENTER");
 
         const json = await data.json();
         console.log(json);
@@ -39,7 +42,7 @@ const RestaurantMenu = ()=>{
        <ul>
          {
             resMenu.map((mItem)=>(
-               <li key={mItem.card.info.id}> {mItem.card.info.name}</li>
+               <li key={mItem.card.info.id}> {mItem.card.info.name} - Rs:{(mItem.card.info.defaultPrice)/100}</li>
                // console.log(mItem.card.info.name);
             ))
          }  
