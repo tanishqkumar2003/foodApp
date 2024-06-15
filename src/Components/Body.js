@@ -3,6 +3,7 @@ import resObj from "../utils/MockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () =>{
     const[ListOfRestaurants, setListOfRestaurant] = useState([]);
@@ -38,6 +39,11 @@ const Body = () =>{
         //  console.log(json);   
       console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);   
     };
+
+    const onlineStatus = useOnlineStatus();
+    if(onlineStatus===false){
+        return (<h1>You are offline check your Internet Connection</h1>)
+    }
 
     // Conditional rendering using if conndition. Same can be performed by ternary operator
     return ListOfRestaurants.length === 0 ? (

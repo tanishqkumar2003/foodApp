@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
+import { MENU_URL } from "../utils/Constants";
 
 const RestaurantMenu = ()=>{
    const[resInfo, setResInfo] = useState({});
@@ -15,7 +16,7 @@ const RestaurantMenu = ()=>{
    }, []);
 
    const fetchMenu = async ()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId="+resId+"&catalog_qa=undefined&submitAction=ENTER");
+        const data = await fetch(MENU_URL+resId);
 
         const json = await data.json();
         console.log(json);
@@ -24,11 +25,21 @@ const RestaurantMenu = ()=>{
         setResInfo(fetchedData);  
         console.log(fetchedData);
 
-        const menu = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[6].card.card;
-        const {itemCards} = menu;
-        setResMenu(itemCards);
-         console.log(resMenu);
-
+        const menu = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      //   const {itemCards} = menu;
+      //   setResMenu(itemCards);   
+         // console.log(menu);
+         let result = null;
+         if(menu){
+            for(let i= 0; i<menu.length; i++){
+               if(menu[i]?.card?.card?.itemCards !== undefined){
+                  result = menu[i].card.card;
+                  break;
+               }
+            }
+            console.log(result.itemCards);
+         }
+         setResMenu(result.itemCards);
    };
 
    
@@ -41,8 +52,8 @@ const RestaurantMenu = ()=>{
 
        <ul>
          {
-            resMenu.map((mItem)=>(
-               <li key={mItem.card.info.id}> {mItem.card.info.name} - Rs:{(mItem.card.info.defaultPrice)/100}</li>
+            resMenu && resMenu.map((mItem)=>(
+               <li key={mItem.card.info.id}> {mItem.card.info.name} - Rs:{mItem.card.info.defaultPrice?(mItem.card.info.defaultPrice):(mItem.card.info.price)/100}</li>
                // console.log(mItem.card.info.name);
             ))
          }  
