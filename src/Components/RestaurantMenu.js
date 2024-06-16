@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
-import { MENU_URL } from "../utils/Constants";
+import { CDN_URL, MENU_URL } from "../utils/Constants";
 
 const RestaurantMenu = ()=>{
    const[resInfo, setResInfo] = useState({});
@@ -50,10 +50,12 @@ const RestaurantMenu = ()=>{
        <h3>{cuisines.join(", ")}</h3>
 
 
- <div>
+ <div className="dishes">
          {
             resMenu && resMenu.map((mItem)=>(
-               <div key={mItem.card.info.id}><img src={`${MENU_URL}${mItem.card.info.imageId}`} alt="Dish Img"/> {mItem.card.info.name} - Rs:{mItem.card.info.defaultPrice?(mItem.card.info.defaultPrice):(mItem.card.info.price)/100} </div>
+               <div className="dish-info" key={mItem.card.info.id}><img src={CDN_URL + mItem.card.info.imageId} alt="(Dish Img)"/><br/> {mItem.card.info.name}<br/>  Rs:{mItem.card.info.defaultPrice?((mItem.card.info.defaultPrice)/100):(mItem.card.info.price)/100}<br/>
+                Rating : {mItem.card.info.ratings.aggregatedRating.rating} 
+                </div>
                // console.log(mItem.card.info.name);
             ))
          }  

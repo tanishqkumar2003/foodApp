@@ -84,3 +84,19 @@
     border-radius: 7px;
     font-weight: 700;
 }
+
+.dishes{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dish-info{
+    padding: 5px;
+    border: solid grey 1px;
+    margin: 10px;
+}
+
+.dishes :hover{
+    background-color: aquamarine;
+    transform: scale(1.1);
+}
