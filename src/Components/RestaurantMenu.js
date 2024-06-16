@@ -50,14 +50,14 @@ const RestaurantMenu = ()=>{
        <h3>{cuisines.join(", ")}</h3>
 
 
-       <ul>
+ <div>
          {
             resMenu && resMenu.map((mItem)=>(
-               <li key={mItem.card.info.id}> {mItem.card.info.name} - Rs:{mItem.card.info.defaultPrice?(mItem.card.info.defaultPrice):(mItem.card.info.price)/100}</li>
+               <div key={mItem.card.info.id}><img src={`${MENU_URL}${mItem.card.info.imageId}`} alt="Dish Img"/> {mItem.card.info.name} - Rs:{mItem.card.info.defaultPrice?(mItem.card.info.defaultPrice):(mItem.card.info.price)/100} </div>
                // console.log(mItem.card.info.name);
             ))
          }  
-         </ul>        
+         </div> 
    
 
      </div>
