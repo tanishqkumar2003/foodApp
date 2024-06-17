@@ -11,7 +11,7 @@ const RestaurantCard = (props) =>{
             </div>
             <div className="text-wrap">
                 <h3 className="text-xl">{name}</h3>
-                <h4 className="">{cuisines.slice(0,4).join(" ,")}</h4>
+                <h4 className="">{cuisines.slice(0,3).join(" ,")}</h4>
                 <h4 className="border-solid border-black">{avgRating}⭐</h4>
                 <h4>{deliveryTime}minutes</h4>
                 <h4>{locality}</h4>
