@@ -56,17 +56,18 @@ const Body = () => {
     return ListOfRestaurants.length === 0 ? (
         <Shimmer />
     ) : (
-        <div className="body">
-            <div className="filter">
-                <div className="search m-3 p-2">
+        <div className="flex flex-wrap ">
+            <div className="filter flex flex-wrap justify-between w-full border-solid border-black shadow-xl my-3 align-middle px-5">
+                <div className="w-[30%] h-14 search m-3 p-2 flex flex-wrap rounded-lg border-1">
                     <input
                         type="text"
-                        className="border"
+                        className="border-2 border-black rounded-lg px-2"
                         placeholder="Restaurant Name"
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
                     />
                     <button
+                        className="hover:bg-red-600 px-7 bg-blue-800 ms-5 rounded-lg text-white font"
                         type="submit"
                         onClick={() => setFiltered(searchText)}
                     >
@@ -74,7 +75,7 @@ const Body = () => {
                     </button>
                 </div>
                 <button
-                    className="filter-btn"
+                    className="hover:bg-red-600 px-7 bg-blue-800 ms-5 rounded-lg text-white font h-10 mt-4"
                     onClick={() => {
                         const filteredList = ListOfRestaurants.filter(
                             (res) => res.info.avgRating >= 4.5
@@ -85,21 +86,23 @@ const Body = () => {
                 >
                     Top Rated Restaurants
                 </button>
-            </div>
+            
 
-            <div className="searchCity m-3 p-2">
-                <input
+            <div className="searchCity w-[30%] h-14 search m-3 p-2 flex flex-wrap rounded-lg border-1">
+                <input 
+                className="border-2 border-black rounded-lg px-2"
                     placeholder="City Name"
                     value={searchCity}
                     onChange={(e) => setCity(e.target.value)}
                 />
-                <button
+                <button className="hover:bg-red-600 px-7 bg-blue-800 ms-5 rounded-lg text-white font"
                     onClick={() => {
                         setCityName(searchCity);
                     }}
                 >
                     Search
                 </button>
+            </div>
             </div>
 
             <div className="res-container flex flex-wrap justify-between gap-2">

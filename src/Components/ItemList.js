@@ -1,8 +1,18 @@
+import { CDN_URL } from "../utils/Constants";
+
 const ItemList = ({data})=>{
-    // console.log(items);
+    // console.log(data.description);
+
     return(
-         <div className="border shadow-lg p-2 mb-2 rounded-lg">
-            {data.name}
+        <div>
+         <div className="border shadow-lg p-2 mb-2 rounded-lg flex">
+            <div className="flex flex-col">
+            <span className="text-xl font-semibold w-44">{data.name}</span>
+            <span className=" font-medium text-lg w-44">Rs.{data.price ? data.price/100 : data.defaultPrice/100}</span>
+            <p className="font-light">{data.description}</p>
+            </div>
+            <img className="w-44 ml-auto" src={CDN_URL+data.imageId}/>
+         </div>
          </div>
     )
 }
