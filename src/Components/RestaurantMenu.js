@@ -56,7 +56,7 @@ const RestaurantMenu = ()=>{
 
  
        
-         <div className="w-full flex justify-center align-middle flex-col "> 
+         <div className="w-full content-center px-60"> 
             {
                resCategory.map((category, index)=>(
                  <RestaurantCategory key={index} data={category?.card?.card}/>
