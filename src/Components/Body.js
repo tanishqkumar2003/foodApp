@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOpenLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -12,6 +12,8 @@ const Body = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [isTopRated, setIsTopRated] = useState(true);
     const [cityName, setCityName] = useState("Noida");
+
+    const RestaurantIsOpen = withOpenLabel(RestaurantCard);
     
     const coordinate = useCityCoordinates(cityName);
 
@@ -39,6 +41,7 @@ const Body = () => {
                 const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
                 setListOfRestaurant(restaurants);
                 setFilteredData(restaurants);
+                console.log(filteredData)
             }
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -102,7 +105,8 @@ const Body = () => {
             <div className="res-container flex flex-wrap justify-between gap-2">
                 {filteredData.map((restaurant) => (
                     <Link key={restaurant.info.id} to={`/restaurants/${restaurant.info.id}`}>
-                        <RestaurantCard resData={restaurant} />
+                        {restaurant.info.isOpen ?(<RestaurantIsOpen resData={restaurant} />): <RestaurantCard resData={restaurant} />}
+                        
                     </Link>
                 ))}
             </div>

@@ -4,6 +4,7 @@ const RestaurantCard = (props) =>{
     const {resData} = props;
     const {name,cuisines,avgRating,areaName, locality} = resData?.info;
     const{deliveryTime} = resData?.info?.sla;
+    //console.log(resData.info);
     return(
         <div className="border-solid border-black w-60 h-[420px] max-w-sm text-wrap rounded overflow-hidden shadow-lg border m-2">
             <div className="container">
@@ -19,5 +20,22 @@ const RestaurantCard = (props) =>{
         </div>
     );
 };
+
+
+
+//Higher Order component
+// input RestaurantCard  ==> RestaurantCardPromoted
+export const withOpenLabel = (RestaurantCard) => {
+    return (props)=>{
+        return(
+          <div>
+             <label className="absolute bg-black text-red-500 mx-3 my-1 p-2 rounded-lg">Is Open</label>
+             <RestaurantCard {...props} />
+          </div>
+        )
+    }
+} 
+
+
 
 export default RestaurantCard;

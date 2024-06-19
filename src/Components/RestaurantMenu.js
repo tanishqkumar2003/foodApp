@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
 import { CDN_URL, MENU_URL } from "../utils/Constants";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = ()=>{
    const[resInfo, setResInfo] = useState({});
    const [resMenu, setResMenu] = useState([]);
+   const  [resCategory, setResCategory] = useState([]);
    const {resId} = useParams();
 
    const {cuisines=[],avgRating,costForTwoMessage,name} = resInfo;
@@ -19,50 +21,51 @@ const RestaurantMenu = ()=>{
         const data = await fetch(MENU_URL+resId);
 
         const json = await data.json();
-        console.log(json);
+      //   console.log(json);
        
         const fetchedData = json?.data?.cards[2]?.card?.card?.info;
         setResInfo(fetchedData);  
-        console.log(fetchedData);
+      //   console.log(fetchedData);
 
         const menu = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
       //   const {itemCards} = menu;
-      //   setResMenu(itemCards);   
-         // console.log(menu);
-         let result = null;
-         if(menu){
-            for(let i= 0; i<menu.length; i++){
-               if(menu[i]?.card?.card?.itemCards !== undefined){
-                  result = menu[i].card.card;
-                  break;
-               }
-            }
-            console.log(result.itemCards);
-         }
-         setResMenu(result.itemCards);
+      //   setResCategory(menu); 
+        
+      // console.log(menu);
+      const categories = menu.filter(c=> c.card?.card?.["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory');
+      console.log(categories);
+      setResCategory(categories);      
+         // let result = null;
+         // if(menu){
+         //    for(let i= 0; i<menu.length; i++){
+         //       if(menu[i]?.card?.card?.itemCards !== undefined){
+         //          result = menu[i].card.card;
+         //          break;
+         //       }
+         //    }
+         //    // console.log(result.itemCards);
+         // }
+         // setResMenu(result.itemCards);
    };
-
-   
-
   return (
      <div className="menu">
-       <h1>{name}</h1>
-       <h3>{cuisines.join(", ")}</h3>
+       <div className="border-black rounded ">
+         <h1 className="text-4xl text-center my-3 font-extrabold ">{name}</h1>
+         <h3 className="text-xl text-center my-3">{cuisines.join(", ")}</h3>
+       </div>
 
-
- <div className="dishes">
-         {
-            resMenu && resMenu.map((mItem)=>(
-               <div className="dish-info" key={mItem.card.info.id}><img src={CDN_URL + mItem.card.info.imageId} alt="(Dish Img)"/><br/> {mItem.card.info.name}<br/>  Rs:{mItem.card.info.defaultPrice?((mItem.card.info.defaultPrice)/100):(mItem.card.info.price)/100}<br/>
-                Rating : {mItem.card.info.ratings.aggregatedRating.rating} 
-                </div>
-               // console.log(mItem.card.info.name);
-            ))
-         }  
+ 
+       
+         <div className="w-full flex justify-center align-middle flex-col "> 
+            {
+               resCategory.map((category, index)=>(
+                 <RestaurantCategory key={index} data={category?.card?.card}/>
+               ))
+            }
+            </div> 
          </div> 
-   
-
-     </div>
+     
+     
   );
 
 }
