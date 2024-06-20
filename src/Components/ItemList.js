@@ -4,16 +4,16 @@ const ItemList = ({data})=>{
     // console.log(data.description);
 
     return(
-        <div>
-         <div className="border shadow-lg p-2 mb-2 rounded-lg flex">
-            <div className="flex flex-col">
-            <span className="text-xl font-semibold w-44">{data.name}</span>
-            <span className=" font-medium text-lg w-44">Rs.{data.price ? data.price/100 : data.defaultPrice/100}</span>
-            <p className="font-light">{data.description}</p>
+        
+         <div className="border shadow-lg p-2 mb-2 rounded-lg flex mt-2">
+            <div className="flex flex-col px-2 ">
+            <span className="text-xl font-semibold w-[50%] py-3 ">{data.name}</span>
+            <span className=" font-medium text-lg w-44  pb-3">Rs.{data.price ? data.price/100 : data.defaultPrice/100}</span>
+            <p className="font-normal">{data.description}</p>
             </div>
             <img className="w-44 ml-auto" src={CDN_URL+data.imageId}/>
          </div>
-         </div>
+         
     )
 }
 
