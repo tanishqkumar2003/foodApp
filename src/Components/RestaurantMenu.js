@@ -9,7 +9,7 @@ const RestaurantMenu = ()=>{
    const  [resCategory, setResCategory] = useState([]);
    const {resId} = useParams();
    const [showIndex, setShowIndex] = useState();
-   console.log(showIndex);
+  //  console.log(showIndex);
 
    const {cuisines=[],avgRating,costForTwoMessage,name} = resInfo;
    //The error "Cannot read properties of undefined (reading 'join')" occurs because cuisines is undefined when the component first renders. This happens because resInfo is initially an empty object, and cuisines is being destructured from it.
@@ -30,7 +30,7 @@ const RestaurantMenu = ()=>{
 
         const menu = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
       const categories = menu.filter(c=> c.card?.card?.["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory');
-      console.log(categories);
+      // console.log(categories);
       setResCategory(categories);      
          // let result = null;
          // if(menu){
@@ -62,7 +62,7 @@ const RestaurantMenu = ()=>{
                 
                 showItem={index === showIndex ? true : false}
                 setShowIndex={()=>{
-                  console.log('called', index)
+                 // console.log('called', index)
                   setShowIndex(index)} }
                 />
               )})

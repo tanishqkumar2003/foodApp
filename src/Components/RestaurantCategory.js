@@ -8,7 +8,7 @@ const RestaurantCategory = ({data ,showItem, setShowIndex})=>{
 
     const handleClick = ()=>{
        setShowIndex();
-       console.log("clicked");
+      // console.log("clicked");
     }
 
 
