@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import ItemList from "./ItemList";
-import { clearCart } from "../Redux/cartSlice";
+// import ItemList from "./ItemList";
+import { clearCart, removeItems } from "../Redux/cartSlice";
+import { CDN_URL } from "../utils/Constants";
 
 const Cart = () => {
     const cartItems = useSelector((store) => store.cart.items);
@@ -9,6 +10,9 @@ const Cart = () => {
     const dispatch = useDispatch();
     const handleClearCart = ()=>{
         dispatch(clearCart());
+    }
+    const handleRemoveItem = (id)=>{
+        dispatch(removeItems(id));
     }
 
     return (
@@ -20,12 +24,36 @@ const Cart = () => {
             </div>
             <div className="w-6/12 mx-[400px] ">
                 {cartItems.map((cartItem, index) => {
-                    return (
-                        <div className="bg-slate-100 my-4" key={index}>
-                            {/* <p>{cartItem.name}</p> */}
-                            <ItemList data={cartItem}/>
-                        </div>
-                    );
+                //     return (
+                //         <div className="bg-slate-100 my-4" key={index}>
+                //             {/* <p>{cartItem.name}</p> */}
+                //             <ItemList data={cartItem}/>
+                //         </div>
+                //     );
+                return(
+
+                    <div key={cartItem.id} className="border shadow-lg p-2 mb-2 rounded-lg flex mt-2 relative">
+                <div className="flex flex-col px-2">
+                    <span className="text-xl font-semibold w-[50%] py-3">{cartItem.name}</span>
+                    <span className="font-medium text-lg w-44 pb-3">Rs.{cartItem.price ? cartItem.price / 100 : cartItem.defaultPrice / 100}</span>
+                    <p className="font-normal">{cartItem.description}</p>
+                </div>
+                <div className="relative w-44 ml-auto">
+                    <div className="w-44 h-44 overflow-hidden">
+                        <img className="w-full h-full object-cover rounded-md" src={CDN_URL + cartItem.imageId} alt={cartItem.name} />
+                    </div>
+                    <button className="font-bold text-lg bg-yellow-50 w-20 absolute bottom-1 left-1/2 transform -translate-x-1/2 rounded-xl"
+                        onClick={()=>{handleRemoveItem(cartItem.id)}}
+                    >Remove</button>
+                </div>
+            </div>
+             
+            
+                     
+                )
+
+
+
                 })}
 
                 {cartItems.length===0 && <h1 className="my-4 font-bold text-xl">Your cart is empty Add Items to Cart</h1>}

@@ -14,10 +14,10 @@ const RestaurantCategory = ({data ,showItem, setShowIndex})=>{
 
     return(
         <div className="w-full rounded-lg align-middle bg-gray-100 shadow-lg m-3 p-3 justify-between content-center">
-           <div className="flex justify-between"
+           <div className="flex justify-between py-2"
             onClick={handleClick} 
            >
-            <span className="hover:text-red-600 font-bold text-lg">{data.title} ({items.length})</span>
+            <span className="hover:text-red-600 font-bold text-lg ">{data.title} ({items.length})</span>
             <span>🔽</span>
            </div>
             {
