@@ -6,7 +6,7 @@ const cartSlice = createSlice({
         items:[]
     },
     reducers:{
-        // Redex  uses Immer library to work on states
+        // Redux  uses Immer library to work on states
         addItems:(state, action)=>{
             state.items.push(action.payload);
         },
