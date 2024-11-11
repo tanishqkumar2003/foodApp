@@ -13,6 +13,7 @@ Pick a dish, get each and every detail & add it to cart.
 4. Bundler: Parcel
 5. State Management: Redux Toolkit
 
+
 ## Working of project
 1. We fetch the restaurants of your city from Swiggy API, getting the live data.
 2. Used an API to get city name by using Longitude and Latitude fetched by Swiggy API so as to search reastaurant according to city name.
