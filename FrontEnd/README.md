@@ -31,6 +31,6 @@ Pick a dish, get each and every detail & add it to cart.
 
 ## How to run on your local
 1. Clone the repository 
-2. Run ```npm init```
-3. Run ```npm start```.
+2. Run ``npm init``
+3. Run ``npm start``.
 4. Make sure you've CORS extension installed in your browser.
